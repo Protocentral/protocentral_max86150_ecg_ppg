@@ -3,7 +3,7 @@
 
 	https://github.com/protocentral/protocentral_max86150
 
-	Wrriten by: Ashwin Whitchurch (support@protocentral.com)
+	Written by: Ashwin Whitchurch (support@protocentral.com)
 
 	Outputs PPG values from the Red LED.
 
@@ -32,8 +32,11 @@
 
 MAX86150 max86150Sensor;
 
-#define debug Serial //Uncomment this line if you're using an Uno or ESP
+#define debug Serial      //Uncomment this line if you're using an Uno or ESP
 //#define debug SerialUSB //Uncomment this line if you're using a SAMD21
+
+int16_t ecgsigned16;
+int16_t redunsigned16;
 
 void setup()
 {
@@ -47,14 +50,14 @@ void setup()
         while (1);
     }
 
-    max86150Sensor.setup(); //Configure sensor. Use 6.4mA for LED drive
+    max86150Sensor.setup(); //Configure sensor
 }
 
 void loop()
 {
     if(max86150Sensor.check()>0)
     {
-        debug.println(max86150Sensor.getFIFOECG());
+        ecgsigned16 = (int16_t) (max86150Sensor.getFIFOECG()>>2);
+        debug.println(ecgsigned16);
     }
-    delayMicroseconds(500);
 }

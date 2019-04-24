@@ -51,7 +51,7 @@ class MAX86150 {
 
   uint32_t getRed(void); //Returns immediate red value
   uint32_t getIR(void); //Returns immediate IR value
-  uint32_t getECG(void); //Returns immediate green value
+  int32_t getECG(void); //Returns immediate ECG value
   bool safeCheck(uint8_t maxTimeToCheck); //Given a max amount of time, check for new data
 
   // Configuration
@@ -103,7 +103,7 @@ class MAX86150 {
   void nextSample(void); //Advances the tail of the sense array
   uint32_t getFIFORed(void); //Returns the FIFO sample pointed to by tail
   uint32_t getFIFOIR(void); //Returns the FIFO sample pointed to by tail
-  uint32_t getFIFOECG(void); //Returns the FIFO sample pointed to by tail
+  int32_t getFIFOECG(void); //Returns the FIFO sample pointed to by tail
 
   uint8_t getWritePointer(void);
   uint8_t getReadPointer(void);
@@ -146,7 +146,7 @@ class MAX86150 {
   {
     uint32_t red[STORAGE_SIZE];
     uint32_t IR[STORAGE_SIZE];
-    uint32_t ecg[STORAGE_SIZE];
+    int32_t ecg[STORAGE_SIZE];
     byte head;
     byte tail;
   } sense_struct; //This is our circular buffer of readings from the sensor

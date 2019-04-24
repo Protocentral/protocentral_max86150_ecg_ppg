@@ -354,7 +354,6 @@ void MAX86150::setup(byte powerLevel, byte sampleAverage, byte ledMode, int samp
 		delay(100);
 		writeRegister8(_i2caddr,MAX86150_FIFOCONFIG,0x7F);
 
-		//sampleAverage=32;
 		//FIFO Configuration
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 		//The chip will average multiple samples of same type together if you wish
@@ -371,54 +370,44 @@ void MAX86150::setup(byte powerLevel, byte sampleAverage, byte ledMode, int samp
 	  FIFOCode = FIFOCode<<4 | 0x0009;// : FIFOCode;  //insert ECG front of ETI in FIFO
 	  FIFOCode = FIFOCode<<8 | 0x0021;//) : FIFOCode; //insert Red(2) and IR (1) in front of ECG in FIFO
 
-	/********* CRITICAL FOR LED GLOW ************/
-	//FIFO Control 1 = FD2|FD1, FIFO Control 2 = FD4|FD3
+
+		//FIFO Control 1 = FD2|FD1, FIFO Control 2 = FD4|FD3
 
 		writeRegister8(_i2caddr,MAX86150_FIFOCONTROL1,(0b00100001));
+		//writeRegister8(_i2caddr,MAX86150_FIFOCONTROL1,(0b00001001));
 		writeRegister8(_i2caddr,MAX86150_FIFOCONTROL2,(0b00001001));
-  //writeRegister8(_i2caddr,MAX86150_FIFOCONTROL1, (char)(FIFOCode & 0x00FF) );
-	//writeRegister8(_i2caddr,MAX86150_FIFOCONTROL2, (char)(FIFOCode >>8) );
-	/********* END CRITICAL FOR LED GLOW ************/
+		//writeRegister8(_i2caddr,MAX86150_FIFOCONTROL2,(0b00000000));
+		//writeRegister8(_i2caddr,MAX86150_FIFOCONTROL1, (char)(FIFOCode & 0x00FF) );
+		//writeRegister8(_i2caddr,MAX86150_FIFOCONTROL2, (char)(FIFOCode >>8) );
 
-	writeRegister8(_i2caddr,MAX86150_PPGCONFIG1,0b11010111);
+		writeRegister8(_i2caddr,MAX86150_PPGCONFIG1,0b11010111);
+		writeRegister8(_i2caddr,MAX86150_PPGCONFIG1,0b11100111);
 
-  writeRegister8(_i2caddr,MAX86150_PPGCONFIG2, 0x01);
-  writeRegister8(_i2caddr,MAX86150_LED_RANGE, 0x00 ); // PPG_ADC_RGE: 32768nA
+		writeRegister8(_i2caddr,MAX86150_PPGCONFIG2, 0x01);
+		writeRegister8(_i2caddr,MAX86150_LED_RANGE, 0x00 ); // PPG_ADC_RGE: 32768nA
 
-	writeRegister8(_i2caddr,MAX86150_SYSCONTROL,0x04);//start FIFO
+		writeRegister8(_i2caddr,MAX86150_SYSCONTROL,0x04);//start FIFO
 
-	writeRegister8(_i2caddr,MAX86150_ECG_CONFIG1,0x00);
+		writeRegister8(_i2caddr,MAX86150_ECG_CONFIG1,0b00000111);
+		writeRegister8(_i2caddr,MAX86150_ECG_CONFIG3,0b00001101);
 
-  //writeRegister8(_i2caddr,0xFF,0x00); //exit test mode
-	//debug.Write("Registers written");
-
-	//writeRegister8(_i2caddr,0x0E,0xDB);
-	//writeRegister8(_i2caddr,0x0E,0xDB);
-
-  setPulseAmplitudeRed(0xFF);
-  setPulseAmplitudeIR(0xFF);
-
-  //setPulseAmplitudeGreen(powerLevel);
-  //setPulseAmplitudeProximity(powerLevel);
-  //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+		setPulseAmplitudeRed(0xFF);
+		setPulseAmplitudeIR(0xFF);
 
   //Multi-LED Mode Configuration, Enable the reading of the three LEDs
   //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-  enableSlot(1, SLOT_RED_LED);
-  if (ledMode > 1) enableSlot(2, SLOT_IR_LED);
-  if (ledMode > 2) enableSlot(3, SLOT_ECG);
+  //enableSlot(1, SLOT_RED_LED);
+  //if (ledMode > 1)
+	//enableSlot(2, SLOT_IR_LED);
+  //if (ledMode > 2)
+	//enableSlot(3, SLOT_ECG);
   //enableSlot(1, SLOT_RED_PILOT);
   //enableSlot(2, SLOT_IR_PILOT);
   //enableSlot(3, SLOT_GREEN_PILOT);
   //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-  clearFIFO(); //Reset the FIFO before we begin checking the sensor
-
+  	clearFIFO(); //Reset the FIFO before we begin checking the sensor
 }
-
-//
-// Data Collection
-//
 
 //Tell caller how many samples are available
 uint8_t MAX86150::available(void)
@@ -450,7 +439,7 @@ uint32_t MAX86150::getIR(void)
 }
 
 //Report the most recent Green value
-uint32_t MAX86150::getECG(void)
+int32_t MAX86150::getECG(void)
 {
   //Check the sensor for new data for 250ms
   if(safeCheck(250))
@@ -472,7 +461,7 @@ uint32_t MAX86150::getFIFOIR(void)
 }
 
 //Report the next Green value in the FIFO
-uint32_t MAX86150::getFIFOECG(void)
+int32_t MAX86150::getFIFOECG(void)
 {
   return (sense.ecg[sense.tail]);
 }
@@ -554,7 +543,7 @@ uint16_t MAX86150::check(void)
         //Convert array to long
         memcpy(&tempLong, temp, sizeof(tempLong));
 
-				tempLong &= 0x3FFFF; //Zero out all but 18 bits
+				tempLong &= 0x7FFFF; //Zero out all but 18 bits
 
         sense.red[sense.head] = tempLong; //Store this reading into the sense array
 
@@ -569,36 +558,33 @@ uint16_t MAX86150::check(void)
           //Convert array to long
           memcpy(&tempLong, temp, sizeof(tempLong));
 					//Serial.println(tempLong);
-		  tempLong &= 0x3FFFF; //Zero out all but 18 bits
+				  tempLong &= 0x7FFFF; //Zero out all but 18 bits
 
-		  sense.IR[sense.head] = tempLong;
+				  sense.IR[sense.head] = tempLong;
         }
 
         if (activeDevices > 2)
         {
           //Burst read three more bytes - ECG
+					int32_t tempLongSigned;
+
           temp[3] = 0;
           temp[2] = _i2cPort->read();
           temp[1] = _i2cPort->read();
           temp[0] = _i2cPort->read();
 					//Serial.println(tempLong);
           //Convert array to long
-          memcpy(&tempLong, temp, sizeof(tempLong));
+          memcpy(&tempLongSigned, temp, sizeof(tempLongSigned));
 
-		  tempLong &= 0x3FFFF; //Zero out all but 18 bits
+		  		//tempLong &= 0x3FFFF; //Zero out all but 18 bits
 
-          sense.ecg[sense.head] = tempLong;
+          sense.ecg[sense.head] = tempLongSigned;
         }
 
         toGet -= activeDevices * 3;
       }
-
     } //End while (bytesLeftToRead > 0)
-
   } //End readPtr != writePtr
-
-
-
   return (numberOfSamples); //Let the world know how much new data we found
 }
 
@@ -633,9 +619,6 @@ void MAX86150::bitMask(uint8_t reg, uint8_t mask, uint8_t thing)
   writeRegister8(_i2caddr, reg, originalContents | thing);
 }
 
-//
-// Low-level I2C Communication
-//
 uint8_t MAX86150::readRegister8(uint8_t address, uint8_t reg) {
 
 		uint8_t tempData = 0;
