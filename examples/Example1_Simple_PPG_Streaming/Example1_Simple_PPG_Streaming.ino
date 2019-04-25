@@ -35,6 +35,8 @@ MAX86150 max86150Sensor;
 #define debug Serial //Uncomment this line if you're using an Uno or ESP
 //#define debug SerialUSB //Uncomment this line if you're using a SAMD21
 
+uint16_t ppgunsigned16;
+
 void setup()
 {
     debug.begin(9600);
@@ -56,7 +58,7 @@ void loop()
 {
     if(max86150Sensor.check()>0)
     {
-        debug.println(max86150Sensor.getFIFORed());
+				ppgunsigned16 = (uint16_t) (max86150Sensor.getFIFORed()>>2);
+				debug.println(ppgunsigned16);
     }
-    delayMicroseconds(500);
 }
