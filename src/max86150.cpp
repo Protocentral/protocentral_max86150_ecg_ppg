@@ -227,7 +227,7 @@ void MAX86150::setSampleRate(uint8_t sampleRate) {
 
 void MAX86150::setPulseWidth(uint8_t pulseWidth) {
   // pulseWidth: one of MAX86150_PULSEWIDTH_69, _188, _215, _411
-  bitMask(MAX86150_PPGCONFIG1, MAX86150_PULSEWIDTH_MASK, pulseWidth);
+  //bitMask(MAX86150_PPGCONFIG1, MAX86150_PULSEWIDTH_MASK, pulseWidth);
 }
 
 // NOTE: Amplitude values: 0x00 = 0mA, 0x7F = 25.4mA, 0xFF = 50mA (typical)
@@ -380,15 +380,15 @@ void MAX86150::setup(byte powerLevel, byte sampleAverage, byte ledMode, int samp
 		//writeRegister8(_i2caddr,MAX86150_FIFOCONTROL1, (char)(FIFOCode & 0x00FF) );
 		//writeRegister8(_i2caddr,MAX86150_FIFOCONTROL2, (char)(FIFOCode >>8) );
 
-		writeRegister8(_i2caddr,MAX86150_PPGCONFIG1,0b11010111);
-		writeRegister8(_i2caddr,MAX86150_PPGCONFIG1,0b11100111);
+		writeRegister8(_i2caddr,MAX86150_PPGCONFIG1,0b11010001);
+		//writeRegister8(_i2caddr,MAX86150_PPGCONFIG1,0b11100111);
 
-		writeRegister8(_i2caddr,MAX86150_PPGCONFIG2, 0x01);
+		writeRegister8(_i2caddr,MAX86150_PPGCONFIG2, 0x06);
 		writeRegister8(_i2caddr,MAX86150_LED_RANGE, 0x00 ); // PPG_ADC_RGE: 32768nA
 
 		writeRegister8(_i2caddr,MAX86150_SYSCONTROL,0x04);//start FIFO
 
-		writeRegister8(_i2caddr,MAX86150_ECG_CONFIG1,0b00000111);
+		writeRegister8(_i2caddr,MAX86150_ECG_CONFIG1,0b00000011);
 		writeRegister8(_i2caddr,MAX86150_ECG_CONFIG3,0b00001101);
 
 		setPulseAmplitudeRed(0xFF);
