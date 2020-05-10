@@ -7,7 +7,7 @@
   BSD license, all text above must be included in any redistribution.
  *****************************************************/
 
-#include "MAX86150.h"
+#include "max86150.h"
 
 static const uint8_t MAX86150_INTSTAT1 =		0x00;
 static const uint8_t MAX86150_INTSTAT2 =		0x01;
