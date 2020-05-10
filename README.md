@@ -1,5 +1,5 @@
-ProtoCentral MAX86150 PPG & ECG sensor Arduino library
-===========================================================
+ProtoCentral MAX86150 PPG & ECG sensor
+======================================
 
 ![*ProtoCentral MAX86150 PPG & ECG sensor breakout*](res/max86150_cover.jpg)
 
