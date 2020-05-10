@@ -1,6 +1,8 @@
 ProtoCentral MAX86150 PPG & ECG sensor
 ======================================
 
+### Don't have one? [Buy it here](https://www.protocentral.com/home/1338-protocentral-max86150-ppg-and-ecg-breakout-with-qwiic.html)
+
 ![*ProtoCentral MAX86150 PPG & ECG sensor breakout*](res/max86150_cover.jpg)
 
 The MAX86150 breakout board is an all in one module that supports a trio of functions for human vitals monitoring. It integrates the Pulse oximeter (SPO2), Electrocardiogram (ECG) and Heart rate sensor module into this breakout board. In more scientific terms, it is integrated with the Photoplethysmogram and Electrocardiogram biosensor module.
