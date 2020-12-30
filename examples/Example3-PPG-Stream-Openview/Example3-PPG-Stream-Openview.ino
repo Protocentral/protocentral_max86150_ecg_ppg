@@ -28,7 +28,7 @@
 #define CES_CMDIF_PKT_START_2   0xFA
 #define CES_CMDIF_TYPE_DATA     0x02
 #define CES_CMDIF_PKT_STOP      0x0B
-#define DATA_LEN                16
+#define DATA_LEN                10
 #define ZERO                    0
 
 volatile char DataPacket[16];
@@ -63,7 +63,7 @@ void sendDataThroughUart(){
   }
 
   //send sensor data
-  for(int i=0; i<10; i++){
+  for(int i=0; i<DATA_LEN; i++){
 
     Serial.write(DataPacket[i]);
   }
