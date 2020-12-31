@@ -39,7 +39,7 @@ uint16_t ppgunsigned16;
 
 void setup()
 {
-    debug.begin(9600);
+    debug.begin(57600);
     debug.println("MAX86150 PPG Streaming Example");
 
     // Initialize sensor

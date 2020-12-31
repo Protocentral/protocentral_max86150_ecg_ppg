@@ -40,7 +40,7 @@ int16_t redunsigned16;
 
 void setup()
 {
-    debug.begin(9600);
+    debug.begin(57600);
     debug.println("MAX86150 Basic Readings Example");
 
     // Initialize sensor

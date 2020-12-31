@@ -28,7 +28,7 @@
 #define CES_CMDIF_PKT_START_2   0xFA
 #define CES_CMDIF_TYPE_DATA     0x02
 #define CES_CMDIF_PKT_STOP      0x0B
-#define DATA_LEN                10
+#define DATA_LEN                6
 #define ZERO                    0
 
 volatile char DataPacket[16];
@@ -77,7 +77,7 @@ void sendDataThroughUart(){
 
 void setup()
 {
-    debug.begin(9600);
+    debug.begin(57600);
     debug.println("MAX86150 PPG Streaming Example");
 
     // Initialize sensor
