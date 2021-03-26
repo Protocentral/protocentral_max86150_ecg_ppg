@@ -25,7 +25,7 @@ Once you have opened OpenView, make sure to select "MAX86150 breakout" under the
 License Information
 ===================
 
-![License](docs/images/license_mark.svg)
+![License](license_mark.svg)
 
 This product is open source! Both, our hardware and software are open source and licensed under the following licenses:
 
