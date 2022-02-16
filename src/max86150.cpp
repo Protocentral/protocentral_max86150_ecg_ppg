@@ -388,8 +388,9 @@ void MAX86150::setup(byte powerLevel, byte sampleAverage, byte ledMode, int samp
 
 		writeRegister8(_i2caddr,MAX86150_SYSCONTROL,0x04);//start FIFO
 
-		writeRegister8(_i2caddr,MAX86150_ECG_CONFIG1,0b00000011);
-		writeRegister8(_i2caddr,MAX86150_ECG_CONFIG3,0b00001101);
+		writeRegister8(_i2caddr,MAX86150_ECG_CONFIG1,0b00000011);///0b00000011); // SR: 200
+		
+    writeRegister8(_i2caddr,MAX86150_ECG_CONFIG3,0b00001101); // IA Gain: 9.5 / PGA Gain: 8
 
 		setPulseAmplitudeRed(0xFF);
 		setPulseAmplitudeIR(0xFF);
