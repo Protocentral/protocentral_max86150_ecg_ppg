@@ -17,7 +17,7 @@ The GUI for visualizing the ECG and Respiration as well as parameters like Heart
 
 Java 8 is required on all platforms for running the processing-based GUI application. You can download Java for your platform from the Official Java website.
 
-You can download and install ProtoCentral OpenView from here. You can also program your Arduino with the example sketch specific to OpenView.
+You can download and install ProtoCentral OpenView from [this GitHub Repo](https://github.com/Protocentral/protocentral_openview). You can also program your Arduino with the example sketch specific to OpenView.
 
 Once you have opened OpenView, make sure to select "MAX86150 breakout" under the "Board" dropdown. If everything goes well, you will be able to see the screen as pictured above.
 

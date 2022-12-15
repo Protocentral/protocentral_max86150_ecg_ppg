@@ -33,9 +33,6 @@
 
 MAX86150 max86150Sensor;
 
-#define debug Serial // Uncomment this line if you're using an Uno or ESP
-//#define debug SerialUSB //Uncomment this line if you're using a SAMD21
-
 int16_t ecgsigned16;
 int16_t redunsigned16;
 
@@ -83,8 +80,8 @@ long coef[13] = {
 
 void setup()
 {
-	debug.begin(57600);
-	debug.println("MAX86150 Basic Readings Example");
+	Serial.begin(57600);
+	Serial.println("MAX86150 Basic Reading Example");
 
 	// Set the coefficients
   fir.setFilterCoeffs(coef);
@@ -92,7 +89,7 @@ void setup()
 	// Initialize sensor
 	if (max86150Sensor.begin(Wire, I2C_SPEED_FAST) == false)
 	{
-		debug.println("MAX86150 was not found. Please check wiring/power. ");
+		Serial.println("MAX86150 was not found. Please check wiring/power. ");
 		while (1)
 			;
 	}
@@ -105,6 +102,6 @@ void loop()
 	if (max86150Sensor.check() > 0)
 	{
 		ecgsigned16 = (int16_t)(max86150Sensor.getECG() >> 2);
-		debug.println(fir.processReading(ecgsigned16));
+		Serial.println(fir.processReading(ecgsigned16));
 	}
 }
