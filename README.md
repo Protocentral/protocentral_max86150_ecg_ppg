@@ -1,6 +1,8 @@
 ProtoCentral MAX86150 PPG & ECG sensor
 ======================================
 
+[![Compile Examples](https://github.com/Protocentral/protocentral_max86150_ecg_ppg/workflows/Compile%20Examples/badge.svg)](https://github.com/Protocentral/protocentral_max86150_ecg_ppg/actions?workflow=Compile+Examples)
+
 ## Don't have one? [Buy it here](https://protocentral.com/product/protocentral-max86150-ppg-and-ecg-breakout-with-qwiic-v2/)
 
 ![*ProtoCentral MAX86150 PPG & ECG sensor breakout*](assets/max86150_breakout.jpg)
