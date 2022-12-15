@@ -130,7 +130,7 @@ class MAX86150 {
 
  private:
   TwoWire *_i2cPort; //The generic connection to user's chosen I2C hardware
-  uint8_t _i2caddr;
+  int _i2caddr;
 
   //activeLEDs is the number of channels turned on, and can be 1 to 3. 2 is common for Red+IR.
   byte activeDevices; //Gets set during setup. Allows check() to calculate how many bytes to read from FIFO

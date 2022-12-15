@@ -258,7 +258,7 @@ void MAX86150::setProximityThreshold(uint8_t threshMSB)
 //Assigning a SLOT_RED_PILOT will ??
 void MAX86150::enableSlot(uint8_t slotNumber, uint8_t device)
 {
-	  uint8_t originalContents;
+	  //uint8_t originalContents;
 
 	  switch (slotNumber) {
 	    case (1):
@@ -622,7 +622,7 @@ void MAX86150::bitMask(uint8_t reg, uint8_t mask, uint8_t thing)
 
 uint8_t MAX86150::readRegister8(uint8_t address, uint8_t reg) {
 
-		uint8_t tempData = 0;
+	//uint8_t tempData = 0;
   _i2cPort->beginTransmission(address);
   _i2cPort->write(reg);
   _i2cPort->endTransmission(false);
