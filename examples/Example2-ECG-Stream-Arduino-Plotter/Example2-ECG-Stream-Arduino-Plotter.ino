@@ -29,14 +29,14 @@
 
 #include <Wire.h>
 #include "max86150.h"
-#include <FIR.h>
+// #include <FIR.h>
 
 MAX86150 max86150Sensor;
 
 int16_t ecgsigned16;
 int16_t redunsigned16;
 
-FIR<long, 13> fir;
+// FIR<long, 13> fir;
 
 /*
 
@@ -63,7 +63,8 @@ fixed point precision: 16 bits
   actual attenuation = n/a
 
 */
-long coef[13] = {
+
+/*long coef[13] = {
 	-364,
 	-103,
 	-42,
@@ -76,7 +77,7 @@ long coef[13] = {
 	60,
 	-42,
 	-103,
-	-364};
+	-364};*/
 
 void setup()
 {
@@ -84,7 +85,7 @@ void setup()
 	Serial.println("MAX86150 Basic Reading Example");
 
 	// Set the coefficients
-  fir.setFilterCoeffs(coef);
+	//fir.setFilterCoeffs(coef);
 
 	// Initialize sensor
 	if (max86150Sensor.begin(Wire, I2C_SPEED_FAST) == false)
@@ -102,6 +103,7 @@ void loop()
 	if (max86150Sensor.check() > 0)
 	{
 		ecgsigned16 = (int16_t)(max86150Sensor.getECG() >> 2);
-		Serial.println(fir.processReading(ecgsigned16));
+		//Serial.println(fir.processReading(ecgsigned16));
+		Serial.println(ecgsigned16);
 	}
 }
