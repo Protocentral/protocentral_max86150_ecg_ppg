@@ -1,27 +1,41 @@
-ProtoCentral MAX86150 PPG & ECG sensor
+<style>body {text-align: justify}</style>
+
+Protocentral MAX86150 PPG & ECG sensor
 ======================================
 
 [![Compile Examples](https://github.com/Protocentral/protocentral_max86150_ecg_ppg/workflows/Compile%20Examples/badge.svg)](https://github.com/Protocentral/protocentral_max86150_ecg_ppg/actions?workflow=Compile+Examples)
 
 ## Don't have one? [Buy it here](https://protocentral.com/product/protocentral-max86150-ppg-and-ecg-breakout-with-qwiic-v2/)
 
-![*ProtoCentral MAX86150 PPG & ECG sensor breakout*](assets/max86150_breakout.jpg)
+![*Protocentral MAX86150 PPG & ECG sensor breakout*](assets/max86150_breakout.jpg)
 
 The MAX86150 breakout board is an all in one module that supports a trio of functions for human vitals monitoring. It integrates the Pulse oximeter (SPO2), Electrocardiogram (ECG) and Heart rate sensor module into this breakout board. In more scientific terms, it is integrated with the Photoplethysmogram and Electrocardiogram biosensor module.
 
 What makes this breakout exceptional is that it is the only touch-based module available to detect both SPO2 as well as ECG. The breakout board allows Qwiic connect as well as breadboard mounting with the provided pins. It is designed to accommodate both the ECG touchpad and the external ECG stereo connector. However, they are configured in a way that they function in an exclusive manner when one mode is active the other remains passive. Any microcontroller such as Arduino is compatible and the communication protocol used is I2C to stream data. With all the above features, this board is best suited for any Mobile health monitoring as well as in wearable devices.
 
-# Visualizing data using the ProtoCentral OpenView GUI
+## Hardware Setup
 
-The GUI for visualizing the ECG and Respiration as well as parameters like Heart rate and Respiration rate is written in Processing, based on Java and is cross-compilable across platforms.
+Connection with the Arduino board is as follows:
+ 
+ |MAX86150 pin label| Arduino Connection  |Pin Function      |
+ |:-----------------: |:---------------------:|:------------------:|
+ | SDA              | SDA                  |  Serial Data     |
+ | SCL              | SCL                  |  Serial Clock    |
+ | 5V               | 5V                  |  Power           |
+ | GND              | GND                 |  GND             |
+ | INT              | --                  |  Interrupt            |
 
-![ProtoCentral Openview](assets/gif-max86150-openview.gif)
+## Visualizing Output
+![streaming in openview](./assets/gif-max86150-openview.gif)
 
-Java 8 is required on all platforms for running the processing-based GUI application. You can download Java for your platform from the Official Java website.
+For further details of the board, refer the documentation
+<center>
 
-You can download and install ProtoCentral OpenView from [this GitHub Repo](https://github.com/Protocentral/protocentral_openview). You can also program your Arduino with the example sketch specific to OpenView.
+[![Get it on SERVICE](https://gist.github.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/documentation.svg)](https://docs.protocentral.com/getting-started-with-max86150/)
 
-Once you have opened OpenView, make sure to select "MAX86150 breakout" under the "Board" dropdown. If everything goes well, you will be able to see the screen as pictured above.
+</center>
+
+
 
 
 License Information
