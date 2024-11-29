@@ -24,16 +24,15 @@ Connection with the Arduino board is as follows:
  | INT              | --                  |  Interrupt            |
 
 ## Visualizing Output
+
 ![streaming in openview](./assets/gif-max86150-openview.gif)
 
 For further details of the board, refer the documentation
 <center>
 
-[![Get it on SERVICE](https://gist.github.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/documentation.svg)](https://docs.protocentral.com/getting-started-with-max86150/)
+[ MAX86150 PPG & ECG sensor Documentation](https://docs.protocentral.com/getting-started-with-max86150/)
 
 </center>
-
-
 
 
 License Information
