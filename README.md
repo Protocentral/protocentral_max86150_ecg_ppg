@@ -1,5 +1,3 @@
-<style>body {text-align: justify}</style>
-
 Protocentral MAX86150 PPG & ECG sensor
 ======================================
 
