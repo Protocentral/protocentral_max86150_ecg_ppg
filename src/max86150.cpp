@@ -70,8 +70,8 @@ static const uint8_t MAX86150_ROLLOVER_DISABLE = 0x00;
 
 static const uint8_t MAX86150_A_FULL_MASK = 	0xF0;
 
-static const uint8_t MAX86150_SHUTDOWN_MASK = 	0x7F;
-static const uint8_t MAX86150_SHUTDOWN = 		0x80;
+static const uint8_t MAX86150_SHUTDOWN_MASK = 	0xFD;
+static const uint8_t MAX86150_SHUTDOWN = 		0x02;
 static const uint8_t MAX86150_WAKEUP = 			0x00;
 
 static const uint8_t MAX86150_RESET_MASK = 		0xFE;
