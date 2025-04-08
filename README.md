@@ -27,12 +27,9 @@ Connection with the Arduino board is as follows:
 
 ![streaming in openview](./assets/gif-max86150-openview.gif)
 
-For further details of the board, refer the documentation
-<center>
 
-[ MAX86150 PPG & ECG sensor Documentation](https://docs.protocentral.com/getting-started-with-max86150/)
+## For further details, refer [the documentation on MAX86150 PPG & ECG sensor](https://docs.protocentral.com/getting-started-with-max86150/)
 
-</center>
 
 
 License Information
